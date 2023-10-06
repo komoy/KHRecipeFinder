@@ -15,7 +15,26 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath("com.android.tools.build:gradle")
-        classpath("com.facebook.react:react-native-gradle-plugin")
+        // Specify the version of the Android Gradle plugin you want to use
+        classpath("com.android.tools.build:gradle:8.0.1") // Adjust version as needed
+
+        // Specify the version of the React Native Gradle plugin you want to use
+        classpath("com.facebook.react:react-native-gradle-plugin:0.65.0") // Adjust version based on your React Native version
     }
+
+    allprojects {
+    repositories {
+        mavenLocal()
+        maven {
+            // All of React Native (JS, Android binaries) is installed from npm
+            url("$rootDir/../node_modules/react-native/android")
+        }
+        maven {
+            // Android JSC is installed from npm
+            url("$rootDir/../node_modules/jsc-android/dist")
+        }
+        google()
+        mavenCentral()
+    }
+}
 }
